@@ -270,6 +270,25 @@ public class TestCase {
 	    System.out.println("OK");
 	}
 
+    /*
+    CASE3 :
+    check if subByteFrequency() returns ERROR
+    when the arguments are incorrect
+    */
+	try {
+	    FrequencerInterface  myObject;
+	    int freq;
+	    System.out.print("case 3\t: ");
+	    myObject = new s4.B183318.Frequencer();
+	    myObject.setSpace("I am a student.".getBytes());
+	    myObject.setTarget("a".getBytes());
+	    freq = myObject.subByteFrequency(-1,-1);
+	    System.out.println("wRONG");
+	}
+	catch(Exception e) {
+	    System.out.println("OK");
+	}
+
 
 	/*
 --------------- int subByteFrequency(int start, int end) ------------------

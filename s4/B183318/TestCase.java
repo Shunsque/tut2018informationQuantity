@@ -253,55 +253,37 @@ public class TestCase {
 
     /*
     CASE2 :
-    check if subByteFrequency() returns ERROR
-    when the arguments are incorrect
+    check if subByteFrequency() returns correct number
     */
 	try {
 	    FrequencerInterface  myObject;
 	    int freq;
 	    System.out.print("case 2\t: ");
 	    myObject = new s4.B183318.Frequencer();
-	    myObject.setSpace("I am a student.".getBytes());
-	    myObject.setTarget("a".getBytes());
-	    freq = myObject.subByteFrequency(-1,-1);
-	    System.out.println("WRONG");
+	    myObject.setSpace("ssssss".getBytes());
+	    myObject.setTarget("s".getBytes());
+	    freq = myObject.subByteFrequency(1,4);
+ 		if(3 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
 	}
 	catch(Exception e) {
-	    System.out.println("OK");
+	    System.out.println("Exception occurred: STOP");
 	}
 
     /*
     CASE3 :
-    check if subByteFrequency() returns ERROR
-    when the argument for END is larger than the length of SPACE. 
+    check if the programer realised the mistake of the argument name 
+    (int start, int end) [not (int start,int length)]
     */
 	try {
 	    FrequencerInterface  myObject;
 	    int freq;
 	    System.out.print("case 3\t: ");
 	    myObject = new s4.B183318.Frequencer();
-	    myObject.setSpace("12345".getBytes());
-	    myObject.setTarget("a".getBytes());
-	    freq = myObject.subByteFrequency(0,10);
-	    System.out.println("WRONG");
-	}
-	catch(Exception e) {
-	    System.out.println("OK");
-	}
+	    myObject.setSpace("0123456789".getBytes());
+	    myObject.setTarget("34".getBytes());
 
-    /*
-    CASE4 :
-    check if subByteFrequency() returns correct number
-    */
-	try {
-	    FrequencerInterface  myObject;
-	    int freq;
-	    System.out.print("case 4\t: ");
-	    myObject = new s4.B183318.Frequencer();
-	    myObject.setSpace("ssssss".getBytes());
-	    myObject.setTarget("s".getBytes());
-	    freq = myObject.subByteFrequency(1,4);
- 		if(3 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+	    freq = myObject.subByteFrequency(3,4);
+ 		if(1 == freq) { System.out.println("OK"); } else {System.out.println("WRONG: Check the instruction again."); }
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");
@@ -422,6 +404,32 @@ public class TestCase {
 		myObject.setSpace("123456789".getBytes());
 	    value = myObject.estimation();
 	    if(0 == value) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+	}
+	catch(Exception e) {
+	    System.out.println("Exception occurred: STOP");
+	}
+
+	/*
+--------------- ホワイトボックステスト ------------------
+	*/
+
+	System.out.println("\n------------------------------------");	
+	System.out.println("ホワイトボックステスト\n");
+
+
+    /*
+    CASE1 :
+    スペースの最後の文字とターゲットの最初の字が部分的に一致すると，配列をオーバーする．
+    */
+	try {
+	    FrequencerInterface  myObject;
+	    int freq;
+	    System.out.print("case 1\t: ");
+	    myObject = new s4.B183318.Frequencer();
+	    myObject.setSpace("aaaaa".getBytes());
+	    myObject.setTarget("aa".getBytes());
+	    freq = myObject.frequency();
+	    if(4 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");

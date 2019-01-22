@@ -244,7 +244,7 @@ public class TestCase {
 	    myObject = new s4.B183318.Frequencer();
 	    myObject.setSpace("I am a student.".getBytes());
 	    myObject.setTarget("a".getBytes());
-	    freq = myObject.subByteFrequency(0,7);
+	    freq = myObject.subByteFrequency(0,1);
 	    if(2 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
 	}
 	catch(Exception e) {
@@ -262,8 +262,8 @@ public class TestCase {
 	    myObject = new s4.B183318.Frequencer();
 	    myObject.setSpace("ssssss".getBytes());
 	    myObject.setTarget("s".getBytes());
-	    freq = myObject.subByteFrequency(1,4);
- 		if(3 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+	    freq = myObject.subByteFrequency(0,1);
+ 		if(6 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");
@@ -282,7 +282,7 @@ public class TestCase {
 	    myObject.setSpace("0123456789".getBytes());
 	    myObject.setTarget("34".getBytes());
 
-	    freq = myObject.subByteFrequency(3,4);
+	    freq = myObject.subByteFrequency(0,2);
  		if(1 == freq) { System.out.println("OK"); } else {System.out.println("WRONG: Check the instruction again."); }
 	}
 	catch(Exception e) {

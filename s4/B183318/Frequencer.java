@@ -189,6 +189,8 @@ public class Frequencer implements FrequencerInterface{
 	*/
 	int first = subByteStartIndex(start, end);
 	int last1 = subByteEndIndex(start, end);
+	//System.out.println("first"+first);
+	//System.out.println("last1"+last1);
 	return last1 - first;
     }
 
@@ -206,7 +208,8 @@ public class Frequencer implements FrequencerInterface{
 	Frequencer frequencerObject;
 	try {
 	    frequencerObject = new Frequencer();
-	    frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
+
+    frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
 	    frequencerObject.printSuffixArray(); // you may use this line for DEBUG
 	    /* Example from "Hi Ho Hi Ho"
 	       0: Hi Ho

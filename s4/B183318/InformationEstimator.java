@@ -60,7 +60,7 @@ public class InformationEstimator implements InformationEstimatorInterface{
 
 		myFrequencer.setTarget(myTarget);
 
-		//Record the results of Information Quality of each prefix.
+		//Record the results of Information Quantity of each prefix.
 		double[] prefixEstimationArray = new double[myTarget.length+1];
 		prefixEstimationArray[0] = 0.0;
 

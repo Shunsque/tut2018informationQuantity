@@ -59,42 +59,29 @@ public class Frequencer implements FrequencerInterface{
 	// ****  Please write code here... ***
 	//
   //do{
-  for(;i < mySpace.length && j < mySpace.length;i++,j++){
-    //if(i < mySpace.length && j < mySpace.length){
-      if(mySpace[i] > mySpace[j]){
-        //System.out.println("aaa");
-        return 1;
-      }
-      else if(mySpace[i] < mySpace[j]){
-        return -1;
-      }
-      /*i = i+1;
-      j = j+1;*/
+	for(;i < mySpace.length && j < mySpace.length;i++,j++){
+    	if(mySpace[i] > mySpace[j]){
+        	return 1;
+		}
+		else if(mySpace[i] < mySpace[j]){
+			return -1;
+		}
     }
+    
     if(i<j) return 1;
     else if(i>j) return -1;
-    /*else{
-      if(i > j) return -1;
-      else if(i < j) return 1;
-      break;
-    }*/
-  //}while(mySpace[i] == mySpace[j]);
-
-  return 0;
+	return 0;
   }
 
     public void setSpace(byte []space) {
-	mySpace = space; if(mySpace.length>0) spaceReady = true;
-	suffixArray = new int[space.length];
-	// put all suffixes  in suffixArray. Each suffix is expressed by one integer.
-	for(int i = 0; i< space.length; i++) {
-	    suffixArray[i] = i;
-	}
-	// Sorting is not implmented yet.
-	//
-	//
-	// ****  Please write code here... ***
-	//
+		mySpace = space; if(mySpace.length>0) spaceReady = true;
+		suffixArray = new int[space.length];
+		// put all suffixes  in suffixArray. Each suffix is expressed by one integer.
+		for(int i = 0; i< space.length; i++) {
+	    	suffixArray[i] = i;
+		}
+
+	// Bubble Sort 
   for(int j = 0; j < suffixArray.length - 1; j++){
     for(int k = suffixArray.length - 1; k > j; k--){
       if(suffixCompare(suffixArray[k-1],suffixArray[k]) == 1){
@@ -103,8 +90,9 @@ public class Frequencer implements FrequencerInterface{
         suffixArray[k-1] = tmp;
       }
     }
-  }
+  }  
     }
+
 
     private int targetCompare(int i, int j, int end) {
 	// comparing suffix_i and target_j_end by dictonary order with limitation of length;

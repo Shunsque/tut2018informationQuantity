@@ -280,81 +280,80 @@ public class Frequencer implements FrequencerInterface{
 	// ****  Please write code here... ***
 	//
 
-   //  	//this flag becomes true when -1 appears.
-   //  	boolean flag_n1 = false;
-   //  	//this flag becomes true when 0 appears.
-   //  	boolean flag_0 = false;
-   //  	//this flag becomes true when 1 appears.
-   //  	boolean flag_1 = false;
+    	//this flag becomes true when 0 appears.
+    	boolean flag_0 = false;
+    	//this flag becomes true when 1 appears.
+    	boolean flag_1 = false;
 
-	  //   int i=suffixArray.length/2;
-	  //   //save the minimum index that indicate 1.
-	  //   int min1 = suffixArray.length;
-	 	// //the size of transition of index number.
-	 	// int shiftsize = suffixArray.length/4;
+	    int i=suffixArray.length/2;
+	    //save the minimum index that indicate 1.
+	    int min1 = suffixArray.length;
+	 	//the size of transition of index number.
+	 	int shiftsize = suffixArray.length/4;
 
-	 	// /*if the first is 1 or the end is -1, 
-	 	// it means that 1 doesn't exist. */
+	 	/*if the first is 1 or the end is -1, 
+	 	it means that suffix doesn't exist. */
 
-	 	// if(mySpace.length==0||targetCompare(0,start,end)==1||targetCompare(suffixArray.length-1,start,end)==-1){
-	 	// 	return min1;
-	 	// }
+	 	if(mySpace.length==0||targetCompare(0,start,end)==1||targetCompare(suffixArray.length-1,start,end)==-1){
+	 		return min1;
+	 	}
 
-	 	// while(true){
-	 	// 	switch(targetCompare(i,start,end)){
-	 	// 		case -1:
-	 	// 			i+=shiftsize;
-	 	// 			break;
-	 	// 		case 1:
-	 	// 			flag_1=true;
-	 	// 			i-=shiftsize;
-	 	// 			if(min1>i)
-	 	// 				min1 = i;
-	 	// 			break;
-	 	// 		case 0:
-	 	// 			flag_0=true;
-	 	// 			i+=shiftsize;
-	 	// 			break;
-	 	// 	}
-	 	// 	if(shiftsize==0){
-	 	// 		if(i!=suffixArray.length-1){
-	 	// 			if(targetCompare(i,start,end)==0 && targetCompare(i+1,start,end)==1){
-	 	// 				return i+1;
-	 	// 			}
-	 	// 		/*
-	 	// 		Sometimes, shiftsize becomes 0 
-	 	// 		/even though it has not found the correct value.
-	 	// 		then, this program implements linear search
-	 	// 		*/			
-	 	// 		while(i<suffixArray.length&&!flag_1){
-	 	// 			i++;
-	 	// 			if(targetCompare(i,start,end)==1&&min1>i){
-	 	// 				min1=i;
-	 	// 			}
-	 	// 			else{
-	 	// 				break;
-	 	// 				}
-	 	// 			}
+	 	while(true){
+	 		switch(targetCompare(i,start,end)){
+	 			case -1:
+	 				i+=shiftsize;
+	 				break;
+	 			case 1:
+	 				flag_1=true;
+	 				if(min1>i){
+	 					min1 = i;
+	 				}
+	 				i-=shiftsize;
+	 				break;
+	 			case 0:
+	 				flag_0=true;
+	 				i+=shiftsize;
+	 				break;
+	 		}
+	 		if(shiftsize==0){
+	 			if(i!=suffixArray.length-1){
+	 				if(targetCompare(i,start,end)==0 && targetCompare(i+1,start,end)==1){
+	 					return i+1;
+	 				}
+	 			/*
+	 			Sometimes, shiftsize becomes 0 
+	 			/even though it has not found the correct value.
+	 			then, this program implements linear search
+	 			*/			
+	 			while(i<suffixArray.length&&!flag_1){
+	 				i++;
+	 				if(targetCompare(i,start,end)==1&&min1>i){
+	 					min1=i;
+	 				}
+	 				else{
+	 					break;
+	 					}
+	 				}
 
-	 	// 		//when 1 has already appearded and 0 has not.
-	 	// 		while(flag_1&&!flag_0&&i>0){
-	 	// 			i--;
-	 	// 			if(targetCompare(i,start,end)==0)
-	 	// 				return i;
-	 	// 		}
+	 			//when 1 has already appearded and 0 has not.
+	 			while(flag_1&&!flag_0&&i>0){
+	 				i--;
+	 				if(targetCompare(i,start,end)==0)
+	 					return i+1;
+	 			}
 
-	 	// 		}
-	 	// 		return min1;
-	 	// 	}
+	 			}
+	 			return min1;
+	 		}
 
-	 	// 	shiftsize = shiftsize >> 1;
-	 	// }
+	 		shiftsize = shiftsize >> 1;
+	 	}
 
-  for(int i=subByteStartIndex(start,end);i<suffixArray.length;i++){
-    if(targetCompare(i,start,end)==1)
-      return i;
-  }
-	return suffixArray.length; // This line should be modified.
+ //  for(int i=subByteStartIndex(start,end);i<suffixArray.length;i++){
+ //    if(targetCompare(i,start,end)==1)
+ //      return i;
+ //  }
+	// return suffixArray.length; // This line should be modified.
    
     }
 
@@ -394,7 +393,7 @@ public class Frequencer implements FrequencerInterface{
 
 
     //frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
-	frequencerObject.setSpace("abcdefg".getBytes());
+	frequencerObject.setSpace("abbbbbbbbbbbbbbbbbbb".getBytes());
 
     //
 
@@ -413,7 +412,7 @@ public class Frequencer implements FrequencerInterface{
 	       A:o Hi Ho
 	    */
 
-	    frequencerObject.setTarget("1".getBytes());
+	    frequencerObject.setTarget("a".getBytes());
 
       //Test of targetCompare
       int end = frequencerObject.myTarget.length;

@@ -330,7 +330,7 @@ public class TestCase {
 	}
 
     /*
-    CASE5 :
+    CASE6 :
     check if this function return correct value when targetComapare()
     returns a lot of -1s
     */
@@ -350,7 +350,7 @@ public class TestCase {
 	}
 
 	/*
---------------- int subByteFrequency(int start, int end) ------------------
+--------------- double estimation() ------------------
 	*/
 
 	System.out.println("\n------------------------------------");	

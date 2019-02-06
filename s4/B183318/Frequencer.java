@@ -58,7 +58,6 @@ public class Frequencer implements FrequencerInterface{
 	//
 	// ****  Please write code here... ***
 	//
-  //do{
 	for(;i < mySpace.length && j < mySpace.length;i++,j++){
     	if(mySpace[i] > mySpace[j]){
         	return 1;
@@ -104,36 +103,36 @@ public class Frequencer implements FrequencerInterface{
         	return;
     	}
 
-    	int mid = n / 2;
+    	int mid = n/2;
 		//left    	
     	int[] l = new int[mid];
     	//right
-    	int[] r = new int[n - mid];
+    	int[] r = new int[n-mid];
 
 		//separation process 
-		for (int i = 0; i < mid; i++) {
+		for (int i=0; i<mid; i++) {
         	l[i] = a[i];
 		}
 		
-		for (int i = mid; i < n; i++) {
-        	r[i - mid] = a[i];
+		for (int i=mid; i<n; i++) {
+        	r[i-mid] = a[i];
 		}
 		
 		//Call repeatedly until the array size become 1.
 		mergeSort(l, mid);
-		mergeSort(r, n - mid);
+		mergeSort(r, n-mid);
  
  		//merge left and right
-		merge(a, l, r, mid, n - mid);
+		merge(a, l, r, mid, n-mid);
 
 }
 
 	//merge 2 arrays
 	public void merge(int[] a, int[] l, int[] r, int left, int right) {
  
-    	int i = 0, j = 0, k = 0;
+    	int i=0, j=0, k=0;
     	//start mergin 2 arrays.
-		while (i < left && j < right){
+		while (i<left && j<right){
 			if (suffixCompare(l[i],r[j]) == -1){
 				a[k++] = l[i++];
 			}	
@@ -195,21 +194,80 @@ public class Frequencer implements FrequencerInterface{
 	//
 	// ****  Please write code here... ***
 	//
+    	//this flag becomes true when -1 appears.
+    	boolean flag_n1 = false;
+    	//this flag becomes true when 0 appears.
+    	boolean flag_0 = false;
 
-  for(int i=0;i<suffixArray.length;i++){
-    if(targetCompare(i,start,end)==0)
-      return i;
-  }
+	    int i=suffixArray.length/2;
+	    //save the minimum index that indicate 0.
+	    int min0 = suffixArray.length;
+	 	//the size of transition of index number.
+	 	int shiftsize = suffixArray.length/4;
 
- //    int i=1;
-	// while(true){
+	 	/*if the first is 1 or the end is -1, 
+	 	it means that 0 doesn't exist. */
 
-	// 	if(targetCompare(i,start,end)==0)
-	// 	break;
+	 	if(mySpace.length==0||targetCompare(0,start,end)==1||targetCompare(suffixArray.length-1,start,end)==-1){
+	 		return min0;
+	 	}
 
-	// 	}
+	 	while(true){
+	 		switch(targetCompare(i,start,end)){
+	 			case -1:
+	 				i+=shiftsize;
+	 				flag_n1=true;
+	 				break;
+	 			case 1:
+	 				i-=shiftsize;
+	 				break;
+	 			case 0:
+	 				flag_0=true;
+	 				if(min0>i)
+	 					min0 = i;
+	 				i-=shiftsize;
+	 				break;
+	 		}
+	 		if(shiftsize==0){
+	 			if(i!=suffixArray.length-1){
+	 				if(targetCompare(i,start,end)==-1 && targetCompare(i+1,start,end)==0){
+	 					return i+1;
+	 				}
+	 			/*
+	 			Sometimes, shiftsize becomes 0 
+	 			/even though it has not found the correct value.
+	 			then, this program implements linear search
+	 			*/			
+	 			while(i>0&&(!flag_n1||!flag_0)){
+	 				i--;
+	 				if(targetCompare(i,start,end)==0&&min0>i){
+	 					flag_0=true;
+	 					min0=i;
+	 				}
+	 				else{
+	 					flag_n1=true;
+	 					}
+	 				}
+	 			//when -1 has already appearded and 0 has not.
+	 			while(flag_n1&&!flag_0&&i<suffixArray.length){
+	 				i++;
+	 				if(targetCompare(i,start,end)==0)
+	 					return i;
+	 			}
 
-	return suffixArray.length; // This line should be modified.
+	 			}
+	 			return min0;
+	 		}
+
+	 		shiftsize = shiftsize >> 1;
+	 	}
+
+	 //  for(int i=0;i<suffixArray.length;i++){
+	 //    if(targetCompare(i,start,end)==0)
+	 //      return i;
+	 //  }
+
+		// return suffixArray.length; // This line should be modified.
 
     }
 
@@ -222,11 +280,82 @@ public class Frequencer implements FrequencerInterface{
 	// ****  Please write code here... ***
 	//
 
+   //  	//this flag becomes true when -1 appears.
+   //  	boolean flag_n1 = false;
+   //  	//this flag becomes true when 0 appears.
+   //  	boolean flag_0 = false;
+   //  	//this flag becomes true when 1 appears.
+   //  	boolean flag_1 = false;
+
+	  //   int i=suffixArray.length/2;
+	  //   //save the minimum index that indicate 1.
+	  //   int min1 = suffixArray.length;
+	 	// //the size of transition of index number.
+	 	// int shiftsize = suffixArray.length/4;
+
+	 	// /*if the first is 1 or the end is -1, 
+	 	// it means that 1 doesn't exist. */
+
+	 	// if(mySpace.length==0||targetCompare(0,start,end)==1||targetCompare(suffixArray.length-1,start,end)==-1){
+	 	// 	return min1;
+	 	// }
+
+	 	// while(true){
+	 	// 	switch(targetCompare(i,start,end)){
+	 	// 		case -1:
+	 	// 			i+=shiftsize;
+	 	// 			break;
+	 	// 		case 1:
+	 	// 			flag_1=true;
+	 	// 			i-=shiftsize;
+	 	// 			if(min1>i)
+	 	// 				min1 = i;
+	 	// 			break;
+	 	// 		case 0:
+	 	// 			flag_0=true;
+	 	// 			i+=shiftsize;
+	 	// 			break;
+	 	// 	}
+	 	// 	if(shiftsize==0){
+	 	// 		if(i!=suffixArray.length-1){
+	 	// 			if(targetCompare(i,start,end)==0 && targetCompare(i+1,start,end)==1){
+	 	// 				return i+1;
+	 	// 			}
+	 	// 		/*
+	 	// 		Sometimes, shiftsize becomes 0 
+	 	// 		/even though it has not found the correct value.
+	 	// 		then, this program implements linear search
+	 	// 		*/			
+	 	// 		while(i<suffixArray.length&&!flag_1){
+	 	// 			i++;
+	 	// 			if(targetCompare(i,start,end)==1&&min1>i){
+	 	// 				min1=i;
+	 	// 			}
+	 	// 			else{
+	 	// 				break;
+	 	// 				}
+	 	// 			}
+
+	 	// 		//when 1 has already appearded and 0 has not.
+	 	// 		while(flag_1&&!flag_0&&i>0){
+	 	// 			i--;
+	 	// 			if(targetCompare(i,start,end)==0)
+	 	// 				return i;
+	 	// 		}
+
+	 	// 		}
+	 	// 		return min1;
+	 	// 	}
+
+	 	// 	shiftsize = shiftsize >> 1;
+	 	// }
+
   for(int i=subByteStartIndex(start,end);i<suffixArray.length;i++){
     if(targetCompare(i,start,end)==1)
       return i;
   }
 	return suffixArray.length; // This line should be modified.
+   
     }
 
     public int subByteFrequency(int start, int end) {
@@ -265,9 +394,7 @@ public class Frequencer implements FrequencerInterface{
 
 
     //frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
-
-	//2k text
-    frequencerObject.setSpace("haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlkshg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlksasdvjaklsjgh hajksdhfue iauheifuahsidgf hg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlkshg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlkshg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlkshg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlkshg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlksasdvjaklsjgh hajksdhfue iauheifuahsidgf hg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlkshg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlkshg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlkshg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf ".getBytes());
+	frequencerObject.setSpace("abcdefg".getBytes());
 
     //
 
@@ -286,23 +413,15 @@ public class Frequencer implements FrequencerInterface{
 	       A:o Hi Ho
 	    */
 
-	    frequencerObject.setTarget("H".getBytes());
+	    frequencerObject.setTarget("1".getBytes());
 
       //Test of targetCompare
       int end = frequencerObject.myTarget.length;
       System.out.println("----- test of targetCompare(i,j,end) ----");
-      System.out.println(frequencerObject.targetCompare(0,0,end));
-      System.out.println(frequencerObject.targetCompare(1,0,end));
-      System.out.println(frequencerObject.targetCompare(2,0,end));
-      System.out.println(frequencerObject.targetCompare(3,0,end));
-      System.out.println(frequencerObject.targetCompare(4,0,end));
-      System.out.println(frequencerObject.targetCompare(5,0,end));
-      System.out.println(frequencerObject.targetCompare(6,0,end));
-      System.out.println(frequencerObject.targetCompare(7,0,end));
-      System.out.println(frequencerObject.targetCompare(8,0,end));
-      System.out.println(frequencerObject.targetCompare(9,0,end));
-      System.out.println(frequencerObject.targetCompare(10,0,end));
-
+  	  for(int i=0;i<frequencerObject.mySpace.length;i++){
+   	      System.out.println(frequencerObject.targetCompare(i,0,end));
+  	  }
+ 
 	    //
 	    // ****  Please write code to check subByteStartIndex, and subByteEndIndex
 	    //

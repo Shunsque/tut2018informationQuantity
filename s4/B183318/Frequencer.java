@@ -82,17 +82,74 @@ public class Frequencer implements FrequencerInterface{
 		}
 
 	// Bubble Sort 
-  for(int j = 0; j < suffixArray.length - 1; j++){
-    for(int k = suffixArray.length - 1; k > j; k--){
-      if(suffixCompare(suffixArray[k-1],suffixArray[k]) == 1){
-        int tmp = suffixArray[k];
-        suffixArray[k] = suffixArray[k-1];
-        suffixArray[k-1] = tmp;
-      }
-    }
-  }  
+	// for(int j = 0; j < suffixArray.length - 1; j++){
+	// 	for(int k = suffixArray.length - 1; k > j; k--){
+	// 		if(suffixCompare(suffixArray[k-1],suffixArray[k]) == 1){
+	// 			int tmp = suffixArray[k];
+	// 			suffixArray[k] = suffixArray[k-1];
+	// 			suffixArray[k-1] = tmp;
+ //      		}
+ //    	}
+ //  	}  
+
+ 	//marge sort
+  	mergeSort(suffixArray,suffixArray.length);
+
     }
 
+	//mergeSort
+	public void mergeSort(int[] a, int n) {
+    	//If the size of the array lowers to "2", finish this function.
+    	if (n < 2) {
+        	return;
+    	}
+
+    	int mid = n / 2;
+		//left    	
+    	int[] l = new int[mid];
+    	//right
+    	int[] r = new int[n - mid];
+
+		//separation process 
+		for (int i = 0; i < mid; i++) {
+        	l[i] = a[i];
+		}
+		
+		for (int i = mid; i < n; i++) {
+        	r[i - mid] = a[i];
+		}
+		
+		//Call repeatedly until the array size become 1.
+		mergeSort(l, mid);
+		mergeSort(r, n - mid);
+ 
+ 		//merge left and right
+		merge(a, l, r, mid, n - mid);
+
+}
+
+	//merge 2 arrays
+	public void merge(int[] a, int[] l, int[] r, int left, int right) {
+ 
+    	int i = 0, j = 0, k = 0;
+    	//start mergin 2 arrays.
+		while (i < left && j < right){
+			if (suffixCompare(l[i],r[j]) == -1){
+				a[k++] = l[i++];
+			}	
+			else{
+	            a[k++] = r[j++];
+			}
+		}
+
+		while (i < left) {
+			a[k++] = l[i++];
+		}
+		while (j < right) {
+			a[k++] = r[j++];
+		}
+
+	}
 
     private int targetCompare(int i, int j, int end) {
 	// comparing suffix_i and target_j_end by dictonary order with limitation of length;

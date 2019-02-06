@@ -195,10 +195,19 @@ public class Frequencer implements FrequencerInterface{
 	//
 	// ****  Please write code here... ***
 	//
+
   for(int i=0;i<suffixArray.length;i++){
     if(targetCompare(i,start,end)==0)
       return i;
   }
+
+ //    int i=1;
+	// while(true){
+
+	// 	if(targetCompare(i,start,end)==0)
+	// 	break;
+
+	// 	}
 
 	return suffixArray.length; // This line should be modified.
 
@@ -254,8 +263,15 @@ public class Frequencer implements FrequencerInterface{
 	try {
 	    frequencerObject = new Frequencer();
 
-    frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
-	    frequencerObject.printSuffixArray(); // you may use this line for DEBUG
+
+    //frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
+
+	//2k text
+    frequencerObject.setSpace("haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlkshg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlksasdvjaklsjgh hajksdhfue iauheifuahsidgf hg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlkshg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlkshg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlkshg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlkshg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlksasdvjaklsjgh hajksdhfue iauheifuahsidgf hg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlkshg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlkshg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf haugaeadsgae ajsdklj aweigjoai aoiejgoiaj aoij iejgijdg jksndinb jasdgie iajsdigjiawegioajndlkshg kxjhvleu hasjdhfluehgiuh kjashdfuehuig hjksdueh uaueueu hausdjgi lasiehio ja ioaiwieubhoau awegadgf ".getBytes());
+
+    //
+
+	    //frequencerObject.printSuffixArray(); // you may use this line for DEBUG
 	    /* Example from "Hi Ho Hi Ho"
 	       0: Hi Ho
 	       1: Ho

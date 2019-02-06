@@ -1,6 +1,7 @@
 package s4.B183318; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID. 
 import java.lang.*;
 import s4.specification.*;
+import java.util.*;
 
 /*
 interface FrequencerInterface {     // This interface provides the design for frequency counter.
@@ -436,6 +437,65 @@ public class TestCase {
 	}
 
 
+	/*
+--------------- ホワイトボックステスト ------------------
+	*/
+
+	System.out.println("\n------------------------------------");	
+	System.out.println("Time Checker\n");
+
+    /*
+    CASE1 :
+    	1,000 letters
+    */
+	try {
+	    FrequencerInterface  myObject;
+	    int freq;
+	    long t0;
+	    long time;
+
+	    for(int i=0;i<5;i++){
+		    System.out.println(" --- "+1000*Math.pow(10,i)+" letters --- ");
+		    myObject = new s4.B183318.Frequencer();
+		   
+
+		    myObject.setSpace("aaaa2".getBytes());
+
+		    System.out.print("Sorting Speed :\t");
+
+		    //generate random letters
+		    byte[] str = new byte[(int)(1000*Math.pow(10,i))];
+			
+			for(int j=0;j<1000*Math.pow(10,i);j++){
+				str[j] = (byte)(Math.random()*255-128);
+			}
+
+		    t0 = System.currentTimeMillis();
+		    myObject.setSpace(str);
+		    //myObject.setSpace("HQLFb76vwGvHXRxzzuSg2CjpGl07VquC9jliFAaNZOmE566G5DJeDyRYDgAXi2xhkuc5yTfLQaUxWYhr4Ir5ksr5Fq2gaXC9ssacwspcgzGoROLxlKcUUp81gqIhoOy7c67XSfRIEvlpEu36akeiFdKqSxba8BRW9zdBTtj7kZ7U4YN5a7qp11Odn0UsGp2kHrCLqQ2PA4KNexKxbv7LwrqfcF7Tj0n2xKSHHf85EAh9HWDPCsj2k68ptnMr98MKOvMjlfyqvQd1avo0Yp626TcUhsh9Nql9mRKhA0c4Oedlk9QVTaNFxVOZRAMlqeRl6xTOZE7O7LgnXb2qekS303u7jQWfURPlB5IR1qKKJ13OlkORzLtaHk7r0NzuXCECYIjoYY1AdkIj8G10WDCmoTBMgVY3tnEMjVQYNOCExwy9eoHuWkMxxJ6xNMLX81PissIX5wHqMwh5qLiIc2aBD1jdfIHKgLPrOgvYjXdFy7FydyDmGxY9yLR7TgTxdMDwfuzHr9FMcK7U7lZi3EexoKGMSi8ApQjQzzky2HAKpP3Muw2QEwkRcOj7x0LbnSFsZCcMxCrBzUMc6GXw6FqSFFchcEoOqueTfHCqq3hIgs0T6C5O9zwPNJcQrC3bNXUQbcvqW12zEh5c0Hgy2BMFmP4mml3aUSo82m0OIcQ0GCh7B6DnES6owaCXdGMUFXJjRB6NctfiIbwusXQ8J3a3M7V3HFoNVDcpgATnG2YrTGydgTumCmCdod0izDqj1Jt4jEBXxuqXcUsG68XL8QGn8UCLYZRxwb64Fn1EqBCJBem5JeoXgLZXHusumQVZ1yqh0KtZShLzW9iRHdvKURJQyFQ14ALjyWv6G9RkmDPZjGegF1SBvaPz2WbnuwGCWbOYX8YL2d7ilWmsA1LKM57UEu6b4ze6EOARRWzS6RCOBt6vXRlLYGlmaawJKHFz63A8YLRCgWORfCYLI2W4Vy6DKEa87GQZbI6s0hAbOoxq".getBytes());
+		    
+		    time = System.currentTimeMillis() - t0;
+		    System.out.println(time+" [ms]");
+
+
+		    myObject.setTarget("a".getBytes());
+
+		    System.out.print("SubByteFrequency():\t");
+		    t0 = System.currentTimeMillis();
+		    freq = myObject.subByteFrequency(0,1);
+		    time = System.currentTimeMillis() - t0;
+		    System.out.println(time+" [ms]");
+		}
+
+		}
+	catch(Exception e) {
+	    System.out.println("Exception occurred: STOP");
+	}
+
+
+
     }
 }	    
 	    
+
+

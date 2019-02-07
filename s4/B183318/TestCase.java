@@ -349,6 +349,82 @@ public class TestCase {
 	    System.out.println("Exception occurred: STOP");
 	}
 
+    /*
+    CASE7 :
+    After this case, there are just random cases with some variation.
+    */
+	try {
+	    FrequencerInterface  myObject;
+	    int freq;
+	    System.out.print("case 7\t: ");
+	    myObject = new s4.B183318.Frequencer();
+	    myObject.setSpace("abbabbaaaaaaab".getBytes());
+	    myObject.setTarget("ab".getBytes());
+
+	    freq = myObject.subByteFrequency(0,2);
+ 		if(3 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+	}
+	catch(Exception e) {
+	    System.out.println("Exception occurred: STOP");
+	}
+
+    /*
+    CASE8 :
+    After this case, there are just random cases with some variation.
+    */
+	try {
+	    FrequencerInterface  myObject;
+	    int freq;
+	    System.out.print("case 8\t: ");
+	    myObject = new s4.B183318.Frequencer();
+	    myObject.setSpace("12345".getBytes());
+	    myObject.setTarget("aaa".getBytes());
+
+	    freq = myObject.subByteFrequency(0,3);
+ 		if(0 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+	}
+	catch(Exception e) {
+	    System.out.println("Exception occurred: STOP");
+	}
+
+    /*
+    CASE9 :
+    After this case, there are just random cases with some variation.
+    */
+	try {
+	    FrequencerInterface  myObject;
+	    int freq;
+	    System.out.print("case 9\t: ");
+	    myObject = new s4.B183318.Frequencer();
+	    myObject.setSpace("     a   c    e      b      w  ".getBytes());
+	    myObject.setTarget("aaa".getBytes());
+
+	    freq = myObject.subByteFrequency(0,3);
+ 		if(0 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+	}
+	catch(Exception e) {
+	    System.out.println("Exception occurred: STOP");
+	}
+
+    /*
+    CASE10 :
+    After this case, there are just random cases with some variation.
+    */
+	try {
+	    FrequencerInterface  myObject;
+	    int freq;
+	    System.out.print("case 10\t: ");
+	    myObject = new s4.B183318.Frequencer();
+	    myObject.setSpace("     a   c    eee  a    b      w  ".getBytes());
+	    myObject.setTarget("a".getBytes());
+
+	    freq = myObject.subByteFrequency(0,1);
+ 		if(2 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+	}
+	catch(Exception e) {
+	    System.out.println("Exception occurred: STOP");
+	}
+
 	/*
 --------------- double estimation() ------------------
 	*/

@@ -249,7 +249,7 @@ public class Frequencer implements FrequencerInterface{
 	 					}
 	 				}
 	 			//when -1 has already appearded and 0 has not.
-	 			while(flag_n1&&!flag_0&&i<suffixArray.length){
+	 			while(flag_n1&&!flag_0&&i<suffixArray.length-1){
 	 				i++;
 	 				if(targetCompare(i,start,end)==0)
 	 					return i;
@@ -305,9 +305,11 @@ public class Frequencer implements FrequencerInterface{
 	 				break;
 	 			case 1:
 	 				flag_1=true;
-	 				if(min1>i){
-	 					min1 = i;
-	 				}
+	 				if(i>0){
+		 				if(targetCompare(i-1,start,end)==0&&min1>i){
+		 					return i;
+		 				}
+		 			}
 	 				i-=shiftsize;
 	 				break;
 	 			case 0:
@@ -325,14 +327,16 @@ public class Frequencer implements FrequencerInterface{
 	 			/even though it has not found the correct value.
 	 			then, this program implements linear search
 	 			*/			
-	 			while(i<suffixArray.length&&!flag_1){
+	 			while(i<suffixArray.length-1&&!flag_1){
 	 				i++;
-	 				if(targetCompare(i,start,end)==1&&min1>i){
+	 				if(targetCompare(i-1,start,end)==0&&targetCompare(i,start,end)==1&&min1>i){
 	 					min1=i;
 	 				}
-	 				else{
-	 					break;
-	 					}
+	 				//if there are sequel 1s, return suffixArraylength. 
+	 				if(targetCompare(i-1,start,end)==1&&targetCompare(i,start,end)==1){
+	 					return suffixArray.length;
+	 				}
+
 	 				}
 
 	 			//when 1 has already appearded and 0 has not.
@@ -392,8 +396,7 @@ public class Frequencer implements FrequencerInterface{
 	    frequencerObject = new Frequencer();
 
 
-    //frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
-	frequencerObject.setSpace("abbbbbbbbbbbbbbbbbbb".getBytes());
+    frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
 
     //
 
@@ -412,7 +415,7 @@ public class Frequencer implements FrequencerInterface{
 	       A:o Hi Ho
 	    */
 
-	    frequencerObject.setTarget("a".getBytes());
+	    frequencerObject.setTarget("H".getBytes());
 
       //Test of targetCompare
       int end = frequencerObject.myTarget.length;
